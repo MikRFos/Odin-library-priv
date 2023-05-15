@@ -40,6 +40,7 @@ submitBookButton.addEventListener('click', () => {
   const read = document.querySelector('#read').value;
   const newBook = new Book(title, author, pages, read);
   addBook(newBook);
+  document.querySelector('.book-input').reset();
   modal.close();
 });
 
