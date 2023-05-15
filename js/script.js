@@ -18,7 +18,6 @@ Book.prototype.info = function () {
 
 function addBook(book) {
   bookArray.push(book);
-  console.log(bookArray);
   displayBooks();
 }
 
@@ -44,29 +43,33 @@ submitBookButton.addEventListener('click', () => {
   modal.close();
 });
 
-function displayBooks() {
-  cardContainer.textContent= '';
-  for (let book of bookArray) {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    //card.style = 'border: 1px solid black';
-    const title = document.createElement('h2');
-    const info = document.createElement('p');
-    const deleteButton = document.createElement('button');
-    title.textContent = book.title;
-    title.classList.add('book-title')
-    info.textContent = book.info();
-    info.classList.add('book-info');
-    deleteButton.classList.add('delete-button');
-    deleteButton.textContent = 'Remove Book';
-    card.appendChild(title);
-    card.appendChild(info);
-    card.appendChild(deleteButton);
-    cardContainer.appendChild(card);
+function createCard(book) {
+  const card = document.createElement('div');
+  card.classList.add('card');
 
-    deleteButton.addEventListener('click', () => {
-      removeBook(book);
-    })
-  }
+  const title = document.createElement('h2');
+  title.textContent = book.title;
+  title.classList.add('book-title');
+
+  const info = document.createElement('p');
+  info.textContent = book.info();
+  info.classList.add('book-info');
+
+  const deleteButton = document.createElement('button');
+  deleteButton.classList.add('delete-button');
+  deleteButton.textContent = 'Remove Book';
+
+  card.appendChild(title);
+  card.appendChild(info);
+  card.appendChild(deleteButton);
+  cardContainer.appendChild(card);
+
+  deleteButton.addEventListener('click', () => {
+    removeBook(book);
+  });
 }
 
+function displayBooks() {
+  cardContainer.textContent = '';
+  bookArray.forEach(createCard);
+}
