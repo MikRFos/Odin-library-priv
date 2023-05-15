@@ -48,8 +48,8 @@ function displayBooks() {
   cardContainer.textContent= '';
   for (let book of bookArray) {
     const card = document.createElement('div');
-    card.classList.add('.card');
-    card.style = 'border: 1px solid black';
+    card.classList.add('card');
+    //card.style = 'border: 1px solid black';
     const title = document.createElement('h2');
     const info = document.createElement('p');
     const deleteButton = document.createElement('button');
